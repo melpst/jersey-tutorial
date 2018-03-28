@@ -23,20 +23,17 @@ public class MyResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Track getTrackInJSON() {
-
         return track;
-
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createTrackInJSON(Track input) {
-
-        String result = "Track saved : " + track;
         track.setSinger(input.getSinger());
         track.setTitle(input.getTitle());
-        return Response.status(201).entity(result).build();
 
+        String result = "Track saved : " + track;
+        return Response.status(201).entity(result).build();
     }
 }
 
