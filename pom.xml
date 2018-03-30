@@ -51,7 +51,8 @@
         <!-- uncomment this to get JSON support -->
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
-            <artifactId>jersey-media-json-binding</artifactId>
+            <artifactId>jersey-media-json-jackson</artifactId>
+            <version>2.25.1</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
