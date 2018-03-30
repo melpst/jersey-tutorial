@@ -1,10 +1,13 @@
 package com.ddth.rest;
 
+import com.ddth.connection.ConnectionManager;
 import com.ddth.model.Track;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  * Root resource (exposed at "myresource" path)
@@ -32,7 +35,21 @@ public class MyResource {
         track.setSinger(input.getSinger());
         track.setTitle(input.getTitle());
 
+        Connection connection = null;
+        boolean isConnected = false;
+
+        try{
+            connection = ConnectionManager.getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                ConnectionManager.closeConnection(connection);
+            }
+        }
+
         String result = "Track saved : " + track;
+
         return Response.status(201).entity(result).build();
     }
 }
