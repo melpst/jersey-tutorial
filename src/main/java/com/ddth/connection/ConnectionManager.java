@@ -15,26 +15,10 @@ public class ConnectionManager {
     public static Connection getConnection() throws SQLException {
 
         try {
-
-            Context initContext = null;
-            try {
-                initContext = new InitialContext();
-            } catch (NamingException e) {
-                e.printStackTrace();
-            }
+            Context initContext = new InitialContext();
             DataSource ds = null;
             ds = (DataSource) initContext.lookup("MySqlDS");
             connection = ds.getConnection();
-			/*
-			String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-			String url = "jdbc:sqlserver://localhost:1433;databaseName=PrimaryDB";
-			String user = "aep";
-			String password = "aep01";
-			Class.forName(driver);
-			connection = DriverManager.getConnection(url, user, password);
-			 */
-//		}catch (NamingException e) {
-//			e.printStackTrace();
         }catch(Exception e){
             e.printStackTrace();
         }
